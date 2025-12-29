@@ -3,9 +3,9 @@ spring:
     name: QrCodeGenerator
 
   datasource:
-    url: jdbc:postgresql://dpg-d55vebmuk2gs73c6tt30-a.oregon-postgres.render.com:5432/eventclean
+    url: jdbc:postgresql://dpg-d59atq2li9vc73ahjj30-a.oregon-postgres.render.com:5432/qrcode_azxq
     username: admin
-    password: fAl9Ja98449OHT0sMCqCkwONpxCzhHox
+    password: ZlcB8NxoiHq9oOyTWzm8gWGNoLQmSOYr
     driver: org.postgresql.Driver
 
   jpa:
