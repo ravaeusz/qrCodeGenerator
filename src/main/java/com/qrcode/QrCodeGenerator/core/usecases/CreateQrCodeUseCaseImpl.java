@@ -1,6 +1,6 @@
 package com.qrcode.QrCodeGenerator.core.usecases;
 
-import com.qrcode.QrCodeGenerator.core.entities.QrCode;
+
 import com.qrcode.QrCodeGenerator.core.gateway.QrCodeGateway;
 
 public class CreateQrCodeUseCaseImpl implements CreateQrCodeUseCase{
@@ -14,6 +14,8 @@ public class CreateQrCodeUseCaseImpl implements CreateQrCodeUseCase{
     @Override
     public byte[] execute(String link) {
         byte[] image = qrCodeGateway.CreateQrCode(link);
+
+
         return image;
 
     }

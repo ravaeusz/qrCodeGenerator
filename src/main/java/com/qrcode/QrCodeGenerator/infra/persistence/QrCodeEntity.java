@@ -1,10 +1,13 @@
 package com.qrcode.QrCodeGenerator.infra.persistence;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.descriptor.jdbc.BinaryJdbcType;
 
 @Entity
 @Getter
@@ -18,8 +21,6 @@ public class QrCodeEntity {
     Long id;
     @Column(nullable = false, length = 500)
     String link;
-    @Lob
-    @Column(columnDefinition = "BYTEA")
     byte[] image;
 
 }

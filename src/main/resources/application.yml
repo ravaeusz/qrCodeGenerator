@@ -10,6 +10,11 @@ spring:
 
   jpa:
     show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
 
   flyway:
     enable: true

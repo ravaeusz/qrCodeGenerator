@@ -1,6 +1,8 @@
 package com.qrcode.QrCodeGenerator.infra.presentation;
 
 import com.qrcode.QrCodeGenerator.core.usecases.CreateQrCodeUseCase;
+import com.qrcode.QrCodeGenerator.infra.dto.QrCodeRequest;
+import com.qrcode.QrCodeGenerator.infra.exception.ConflictException;
 import com.qrcode.QrCodeGenerator.infra.mapper.QrCodeMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,25 @@ public class QrCodeController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Map<String,Object>> generateQrCode(@RequestBody String link){
-        var bytes = createQrCodeUseCase.execute(link);
+    public ResponseEntity<Map<String,Object>> generateQrCode(@RequestBody QrCodeRequest request){
+        if (request.link() == null | request.link() == ""){
+            throw new ConflictException("Erro ao gerar QR Code");
+        }
+        var bytes = createQrCodeUseCase.execute(request.link());
         Map<String, Object> response = new HashMap<>();
         response.put("Message","QrCode Gerado com sucesso");
         response.put("QrCode", bytes);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{link}")
+    public ResponseEntity<Map<String,Object>> getQrCodeBylink(@PathVariable QrCodeRequest request){
+        var entity = createQrCodeUseCase.execute(request.link());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("Message","QrCode Gerado com sucesso");
+        response.put("Data", entity);
+
         return ResponseEntity.ok().body(response);
     }
 
